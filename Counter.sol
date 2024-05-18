@@ -11,15 +11,18 @@ contract Counter{
     // "public" visibility, "view" function type, returns "uint"
     function get() public view returns (uint) {
     return count;
+
     }
     // increment count by 1
     function inc() public {
-    count += 1;
+        count++;
     }
+  
     // decrement count by 1
     function dec() public {
     // it will fail if count = 0
-    count -= 1;
+    require(count > 0, "Counter: cannot decrement, count is already zero");
+    count--;
     }
 }
 
