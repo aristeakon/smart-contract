@@ -14,36 +14,18 @@ contract SimpleVoting {
     uint256 public pollCount;
     
     function createPoll(string calldata _question) public {
-        Poll storage newPoll = polls[pollCount];
-        newPoll.question = _question;
-        newPoll.isOpen = true;
-        pollCount++;
+
     }
     
     function vote(uint256 pollIndex, bool voteYes) public {
-        require(pollIndex < pollCount, "Poll does not exist.");
-        Poll storage poll = polls[pollIndex];
-        require(poll.isOpen, "Poll is closed.");
-        
-        if (voteYes) {
-            poll.yesVotes++;
-        } else {
-            poll.noVotes++;
-        }
+
     }
     
     function endPoll(uint256 pollIndex) public {
-        require(pollIndex < pollCount, "Poll does not exist.");
-        Poll storage poll = polls[pollIndex];
-        require(poll.isOpen, "Poll is already closed.");
-        
-        poll.isOpen = false;
+
     }
     
     function getPollResults(uint256 pollIndex) public view returns (string memory question, uint256 yesVotes, uint256 noVotes, bool isOpen) {
-        require(pollIndex < pollCount, "Poll does not exist.");
-        Poll storage poll = polls[pollIndex];
-        
-        return (poll.question, poll.yesVotes, poll.noVotes, poll.isOpen);
+
     }
 }
