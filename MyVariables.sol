@@ -13,7 +13,7 @@ contract MyVariables {
     }
 
     // Συνάρτηση που εκτελεί κάποια ενέργεια και επιστρέφει πολλαπλές τιμές
-    function doSomething() public view returns (uint, uint, address) {
+    function doSomething() public view returns (uint, uint, uint, address) {
         // Τοπικές μεταβλητές δεν αποθηκεύονται στο blockchain και δεν κοστίζουν gas
         uint i = 456; // Τοπική μεταβλητή i
 
@@ -27,13 +27,7 @@ contract MyVariables {
         address sender = msg.sender; // Διεύθυνση του καλούντος
 
         // Επιστρέφει πολλαπλές τιμές ως μια ομάδα (tuple)
-        return (i, timestamp, sender);
+        return (i, blockNumber, timestamp, sender);
     }
 
-    // Συνάρτηση που επιστρέφει διάφορες παγκόσμιες μεταβλητές
-    function getGlobalVariables() public view returns (address, uint, uint, uint) {
-        // Επιστρέφει τη διεύθυνση του συμβολαίου, το τρέχον gas price,
-        // την ποσότητα gas που απομένει και την αρχική διεύθυνση της συναλλαγής
-        return (address(this), tx.gasprice, gasleft(), tx.origin);
-    }
 }
