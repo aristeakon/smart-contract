@@ -1,6 +1,6 @@
 contract MyVariables {
 // state variables stored on the blockchain, cost gas
-string public text = "Hello";
+string public text = "Hello All";
 uint public num = 123;
 function getTextAndNum() public view returns (string memory, uint) {
 // return the text and num state variables
