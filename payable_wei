@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract PaymentExample {
+    // Δομή για την αποθήκευση των πληροφοριών του αποστολέα και του ποσού που έστειλε
+    struct Payment {
+        address sender;
+        uint amount;
+    }
+
+    // Mapping για την αποθήκευση των πληρωμών
+    mapping(uint => Payment) public payments;
+    uint public paymentCount;
+
+    // Συνάρτηση για την αποστολή χρημάτων στο συμβόλαιο
+    function sendPayment() public payable {
+        require(msg.value > 0, "You need to send some Ether");
+        
+        payments[paymentCount] = Payment(msg.sender, msg.value);
+        paymentCount++;
+    }
+
+    // Συνάρτηση για την ανάκτηση των πληροφοριών μιας πληρωμής
+    function getPayment(uint _index) public view returns (address, uint) {
+        require(_index < paymentCount, "Invalid payment index");
+        
+        Payment storage payment = payments[_index];
+        return (payment.sender, payment.amount);
+    }
+
+    // Συνάρτηση για την ανάκτηση του συνολικού υπολοίπου του συμβολαίου
+    function getContractBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+}
