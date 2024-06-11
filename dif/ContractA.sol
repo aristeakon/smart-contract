@@ -8,17 +8,11 @@ contract ContractA {
         contractBAddress = _contractBAddress;
     }
 
-    function getContractBValue() public view returns (uint) {
-        // Δημιουργία χαμηλού επιπέδου κλήσης
-        (bool success, bytes memory data) = contractBAddress.staticcall(
-            abi.encodeWithSignature("getValue()")
-        );
-        
-        // Έλεγχος αν η κλήση ήταν επιτυχής
-        require(success, "Call to ContractB failed");
-        
-        // Μετατροπή των δεδομένων επιστροφής από bytes σε uint
-        return abi.decode(data, (uint));
+        function getContractBValue() public view returns (uint) {
+        // Δημιουργία instance του συμβολαίου ContractB χρησιμοποιώντας τη διεύθυνσή του
+        ContractB contractB = ContractB(contractBAddress);
+        // Κλήση της συνάρτησης getValue του ContractB
+        return contractB.getValue();
     }
 }
 
