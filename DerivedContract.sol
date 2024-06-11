@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
 // Δήλωση του παραγόμενου συμβολαίου που κληρονομεί από το BaseContract
 contract DerivedContract is BaseContract {
     // Δημόσια μεταβλητή για αποθήκευση του παραγόμενου μηνύματος
